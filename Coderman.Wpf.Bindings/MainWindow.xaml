@@ -7,18 +7,56 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label HorizontalAlignment="Center">Awesome</Label>
+
+            <DataGrid ItemsSource="{Binding AwesomePeople}"
+                      AutoGenerateColumns="False"
+                      Grid.Row="1"
+                      SelectedItem="{Binding SelectedPerson}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+        </Grid>
+        
+       
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="1"
                     VerticalAlignment="Center">
-            <Label>This will be bound</Label>
-            
-            <TextBox Width="100" 
-                     Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <Label>To</Label>
-
-            <Label Content="{Binding Text}"></Label>
+            <Button Click="MoveToNotAwesome_Click">-></Button>
+            <Button Click="RemoveFromNotAwesome_Click">&lt;-</Button>
         </StackPanel>
 
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label HorizontalAlignment="Center">Not Awesome</Label>
+
+            <DataGrid ItemsSource="{Binding NotAwesomePeople}"
+                      AutoGenerateColumns="False"
+                      Grid.Row="1"
+                      SelectedItem="{Binding SelectedPerson}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
     </Grid>
 </Window>

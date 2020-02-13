@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Coderman.Wpf.Bindings
 {
-    public class ViewModel
+    internal class ViewModel
     {
-        public string Text { get; set; }
+        public IList<Person> AwesomePeople { get; set; }
+        public IList<Person> NotAwesomePeople { get; set; }
+
+        public Person SelectedPerson { get; set; }
     }
 }
