@@ -48,30 +48,24 @@ namespace Coderman.Wpf.Bindings
 
         private void MoveToNotAwesome_Click(object sender, RoutedEventArgs e)
         {
-            if (this.viewModel.SelectedPerson == null)
-                return;
-
-            if (this.viewModel.NotAwesomePeople.Contains(this.viewModel.SelectedPerson))
-                return;
-
-            Person person = this.viewModel.SelectedPerson;
-
-            this.viewModel.AwesomePeople.Remove(person);
-            this.viewModel.NotAwesomePeople.Add(person);
+            this.AddToList(this.viewModel.NotAwesomePeople, this.viewModel.AwesomePeople, this.viewModel.SelectedPerson);
         }
 
         private void RemoveFromNotAwesome_Click(object sender, RoutedEventArgs e)
         {
-            if (this.viewModel.SelectedPerson == null)
+            this.AddToList(this.viewModel.AwesomePeople, this.viewModel.NotAwesomePeople, this.viewModel.SelectedPerson);
+        }
+
+        private void AddToList(IList<Person> listToAddTo, IList<Person> listToRemoveFrom, Person personToAdd)
+        {
+            if (personToAdd is null)
                 return;
 
-            if (this.viewModel.AwesomePeople.Contains(this.viewModel.SelectedPerson))
+            if (listToAddTo.Contains(personToAdd))
                 return;
 
-            Person person = this.viewModel.SelectedPerson;
-
-            this.viewModel.NotAwesomePeople.Remove(person);
-            this.viewModel.AwesomePeople.Add(person);
+            listToRemoveFrom.Remove(personToAdd);
+            listToAddTo.Add(personToAdd);
         }
     }
 }

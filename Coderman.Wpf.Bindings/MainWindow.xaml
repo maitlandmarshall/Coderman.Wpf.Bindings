@@ -13,26 +13,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            
-            <Label HorizontalAlignment="Center">Awesome</Label>
+        <local:DataGridForPersonWithTitle People="{Binding AwesomePeople}"
+                                          SelectedPerson="{Binding SelectedPerson, Mode=TwoWay}"
+                                          DataGridTitle="Awesome"
+                                          />
 
-            <DataGrid ItemsSource="{Binding AwesomePeople}"
-                      AutoGenerateColumns="False"
-                      Grid.Row="1"
-                      SelectedItem="{Binding SelectedPerson}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            
-        </Grid>
-        
-       
+
         <StackPanel Orientation="Vertical"
                     Grid.Column="1"
                     VerticalAlignment="Center">
@@ -40,23 +26,10 @@
             <Button Click="RemoveFromNotAwesome_Click">&lt;-</Button>
         </StackPanel>
 
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Label HorizontalAlignment="Center">Not Awesome</Label>
-
-            <DataGrid ItemsSource="{Binding NotAwesomePeople}"
-                      AutoGenerateColumns="False"
-                      Grid.Row="1"
-                      SelectedItem="{Binding SelectedPerson}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-        </Grid>
+        <local:DataGridForPersonWithTitle People="{Binding NotAwesomePeople}"
+                                          SelectedPerson="{Binding SelectedPerson, Mode=TwoWay}"
+                                          DataGridTitle="Awesome"
+                                          Grid.Column="2"
+                                          />
     </Grid>
 </Window>
